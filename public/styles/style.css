@@ -1,8 +1,8 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
-a {
-  color: #00B7FF;
+h1.logo {
+  font-family: 'Handlee', cursive;
 }
