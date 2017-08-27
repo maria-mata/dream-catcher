@@ -4,6 +4,8 @@ const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+// CORS
+const cors = require('cors');
 // routes
 const index = require('./routes/index');
 const dreams = require('./routes/dreams');
@@ -22,6 +24,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// invoke CORS before routes
+app.use(cors());
 // routes files
 app.use('/', index);
 app.use('/dreams', dreams);
