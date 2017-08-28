@@ -1,8 +1,23 @@
 body {
-  padding: 50px;
   font-family: 'Open Sans', sans-serif;
+  background-image: url('../images/stardust.png');
+  background-repeat: repeat;}
+
+h1.brand {
+  padding: .2em;
+  font-family: 'Amatic SC', cursive;
+  font-size: 5em;
 }
 
-h1.logo {
-  font-family: 'Handlee', cursive;
+a.nav-link, .tagline {
+  color: white;
+}
+
+.tagline {
+  font-size: 1.3em;
+}
+
+div.row {
+  max-height: 55vh;
+  overflow: scroll;
 }

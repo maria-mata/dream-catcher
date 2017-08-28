@@ -1,9 +1,13 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const queries = require('../db/queries')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Dream Catcher' });
+  queries.getCategories()
+    .then(dreamTypes => {
+      res.render('index', {dreamTypes})
+    })
 });
 
 module.exports = router;
