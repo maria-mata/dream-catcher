@@ -3,13 +3,13 @@ body {
   background-image: url('../images/stardust.png');
   background-repeat: repeat;}
 
-h1.brand {
+div.brand a {
   padding: .2em;
   font-family: 'Amatic SC', cursive;
-  font-size: 5em;
+  font-size: 4em;
 }
 
-a.nav-link, .tagline {
+a.navbar-brand, .tagline {
   color: white;
 }
 
