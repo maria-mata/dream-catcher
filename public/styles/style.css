@@ -1,16 +1,31 @@
 body {
   font-family: 'Open Sans', sans-serif;
   background-image: url('../images/stardust.png');
-  background-repeat: repeat;}
+  background-repeat: repeat;
+}
 
 div.brand a {
   padding: .2em;
   font-family: 'Amatic SC', cursive;
-  font-size: 4em;
+  font-size: 3em;
+  font-weight: bold;
 }
 
 a.navbar-brand, .tagline {
   color: white;
+}
+
+a {
+  color: #975BAF;
+}
+
+.card-header {
+  background: none;
+}
+
+.btn.btn-primary {
+  background-color: #975BAF;
+  border: none;
 }
 
 .tagline {
