@@ -1,0 +1,69 @@
+<br>
+<div class="row justify-content">
+  <div class="col-sm-8">
+    <div class="card bg-light mb-3">
+      <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#my-dreams">My Dreams</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#dream-types">Dream Types</a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body main">
+        <div class="tab-content">
+          <div class="tab-pane active" id="my-dreams" role="tabpanel">
+            <dl>
+            {{#each mydreams}}
+              <dt>{{date}} / {{category_name}}</dt>
+              <dd>{{description}}</dd>
+            {{/each}}
+            </dl>
+          </div>
+          <div class="tab-pane" id="dream-types" role="tabpanel">
+            <dl>
+            {{#each dreamTypes}}
+              <dt>{{name}}</dt>
+              <dd>{{description}}</dd>
+            {{/each}}
+            </dl>
+            <dl>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card bg-light mb-3">
+      <div class="card-header">
+        <h5>Add New Dream</h5>
+      </div>
+      <div class="card-body main">
+        <form id="new-dream">
+          <div class="row">
+            <div class="form-group col">
+              <select class="custom-select" name="">
+                <option selected>Choose Category</option>
+                {{#each dreamTypes}}
+                <option value="{{id}}">{{name}}</option>
+                {{/each}}
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col">
+              <label for="description">Description</label>
+              <textarea class="form-control" id="description" rows="5"
+              placeholder="Describe your dream...">
+              </textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

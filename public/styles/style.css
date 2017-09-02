@@ -4,19 +4,32 @@ body {
   background-repeat: repeat;
 }
 
-div.brand a {
-  padding: .2em;
+a.navbar-brand.logo {
+  padding: 0.5em 0;
   font-family: 'Amatic SC', cursive;
   font-size: 3em;
   font-weight: bold;
 }
 
-a.navbar-brand, .tagline {
+a.navbar-brand {
   color: white;
 }
 
-a {
-  color: #975BAF;
+a.nav-link.active {
+  background-color: inherit !important;
+  border-bottom-color: rgb(246, 247, 249) !important;
+}
+
+.card a {
+  /*color: #563d7c;*/
+  color: #8000FF;
+  font-weight: bold !important;
+  /*color: rgb(0, 149, 173);*/
+}
+
+.card-body.main {
+  height: 50vh;
+  overflow: scroll;
 }
 
 .card-header {
@@ -24,15 +37,10 @@ a {
 }
 
 .btn.btn-primary {
-  background-color: #975BAF;
+  background-color: #8000FF;
   border: none;
 }
 
 .tagline {
   font-size: 1.3em;
-}
-
-div.row {
-  max-height: 55vh;
-  overflow: scroll;
 }
