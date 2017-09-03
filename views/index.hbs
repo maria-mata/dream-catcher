@@ -1,56 +1,81 @@
-<div class="row align-items-center justify-content-center">
-  <div class="col-sm-10">
-    <div class="card bg-light mb-3">
-      <div class="card-header">
-        <ul class="nav nav-tabs card-header-tabs">
-          <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#login">Log In</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#signup">Sign Up</a>
-          </li>
-        </ul>
+<header>
+  <nav class="navbar navbar-dark">
+    <div class="container">
+      <div class="col-sm-12" align="center">
+        <a class="navbar-brand logo" href="./">
+          <img src="./images/dream-catcher.png" width="75" height="75" class="d-inline-block align-top" alt="">
+          Dream Catcher
+        </a>
       </div>
-      <div class="card-body">
-        <div class="tab-content">
-          <div class="tab-pane active" id="login" role="tabpanel">
-            <form id="login-form">
-              <br>
-              <div class="row">
-                <div class="form-group col-sm-6">
-                  <label for="username">Username</label>
-                  <input type="text" class="form-control" id="username" placeholder="username">
+    </div>
+  </nav>
+</header>
+<main class="container">
+  <div class="row align-items-center justify-content-center">
+    <div class="col-sm-10">
+      <div class="card bg-light mb-3">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#login">Log In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#signup">Sign Up</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <div class="tab-content">
+            <div class="tab-pane active" id="login" role="tabpanel">
+              <form id="login-form">
+                <div class="row container">
+                  <p class="text-danger"><span id="login-error">Invalid username
+                    or password.</span></p>
                 </div>
-                <div class="form-group col-sm-6">
-                  <label for="password">Password</label>
-                  <input type="password" class="form-control" id="password" placeholder="password">
+                <div class="row">
+                  <div class="form-group col-sm-6">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="username">
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="password">
+                  </div>
                 </div>
-              </div>
-              <button type="submit" class="btn btn-primary">Log In</button>
-            </form>
-          </div>
-          <div class="tab-pane" id="signup" role="tabpanel">
-            <form id="signup-form">
-              <br>
-              <div class="row">
-                <div class="form-group col-sm-4">
-                  <label for="email">Email</label>
-                  <input type="email" class="form-control" id="email" placeholder="email@example.com">
+                <button type="submit" class="btn btn-primary">Log In</button>
+              </form>
+            </div>
+            <div class="tab-pane" id="signup" role="tabpanel">
+              <form id="signup-form">
+                <div class="row container">
+                  <p class="text-danger"><span id="signup-error">Email or username
+                    already in use.</span></p>
                 </div>
-                <div class="form-group col-sm-4">
-                  <label for="username-new">Username</label>
-                  <input type="text" class="form-control" id="username-new" placeholder="username">
+                <div class="row">
+                  <div class="form-group col-sm-4">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="email@example.com">
+                  </div>
+                  <div class="form-group col-sm-4">
+                    <label for="username-new">Username</label>
+                    <input type="text" class="form-control" id="username-new" placeholder="username">
+                  </div>
+                  <div class="form-group col-sm-4">
+                    <label for="password-new">Password</label>
+                    <input type="password" class="form-control" id="password-new" placeholder="password">
+                  </div>
                 </div>
-                <div class="form-group col-sm-4">
-                  <label for="password-new">Password</label>
-                  <input type="password" class="form-control" id="password-new" placeholder="password">
-                </div>
-              </div>
-              <button type="submit" class="btn btn-primary">Sign Up</button>
-            </form>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</main>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<script src="../scripts/index.js"></script>

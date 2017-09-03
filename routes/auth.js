@@ -2,35 +2,49 @@ const express = require('express')
 const router = express.Router()
 
 const knex = require('../db/knex')
-// const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt')
 const queries = require('../db/queries')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
-// New user signup
-// router.post('/signup', (req, res) => {
-//   // validate unique email
-//   knex('users').where('email', req.body.email)
-//     .then(user => {
-//       if (user.length === 0) {
-//         // first hash the password
-//         let saltRounds = 10
-//         let hash = bcrypt.hashSync(req.body.password, saltRounds)
-//         req.body.password = hash
-//         // insert user with hashed PW into database
-//         knex('users').insert(req.body).returning('*')
-//           .then(newUser => {
-//             let payload = newUser[0] // comes back as an array of 1
-//             delete payload.password // don't send the hashed PW to the front end
-//             let token = jwt.sign(payload, process.env.TOKEN_SECRET)
-//             res.json({token});
-//           })
-//       } else {
-//         res.json({error: 'Email already in use.'})
-//       }
-//     })
-// });
-
 // Existing user login
+router.post('/login', (req, res) => {
+  knex('user').where('user.username', req.body.username)
+    .then(user => {
+      if (user.length === 0) {
+        res.json({error: 'Login failed.'})
+      } else {
+        let match = bcrypt.compareSync(req.body.password, user[0].password)
+        if (match) {
+          queries.getDreamsByUserId(user[0].id)
+          .then(dreams => {
+            res.render('dreams', {dreams})
+            console.log('is this working?');
+          })
+        }
+      }
+    })
+});
+
+// New user signup
+router.post('/signup', (req, res) => {
+  knex('user').where('user.email', req.body.email)
+    .then(user => {
+      if (user.length === 0) {
+        let saltRounds = 10
+        let hash = bcrypt.hashSync(req.body.password, saltRounds)
+        req.body.password = hash
+        knex('user').insert(req.body).returning('*')
+          .then(newUser => {
+            let payload = newUser[0]
+            delete payload.password
+            let token = jwt.sign(payload, process.env.TOKEN_SECRET)
+            res.json({token});
+          })
+      } else {
+        res.json({error: 'Signup failed.'})
+      }
+    })
+});
 
 module.exports = router
