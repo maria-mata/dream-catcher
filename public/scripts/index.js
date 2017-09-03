@@ -1,8 +1,6 @@
 const url = 'http://localhost:3000'
 
 $(() => {
-  // $('#login-error').hide()
-  // $('#signup-error').hide()
   $('#login-form').submit(logIn)
   $('#signup-form').submit(signUp)
 });
@@ -18,7 +16,7 @@ function logIn(event) {
         console.log(res.error)
         $('#login-error').show()
       } else {
-        localStorage.setItem('token', response.token)
+        localStorage.setItem('token', res.token)
         location.href = '/dreams'
       }
     })
@@ -36,7 +34,7 @@ function signUp(event) {
         console.log(res.error)
         $('#signup-error').show()
       } else {
-        localStorage.setItem('token', response.token)
+        localStorage.setItem('token', res.token)
         location.href = '/dreams'
       }
     })
