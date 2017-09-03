@@ -1,9 +1,8 @@
 const url = 'http://localhost:3000'
 
 $(() => {
-  // localStorage.removeItem('token');
-  $('#login-error').hide()
-  $('#signup-error').hide()
+  // $('#login-error').hide()
+  // $('#signup-error').hide()
   $('#login-form').submit(logIn)
   $('#signup-form').submit(signUp)
 });
@@ -16,27 +15,28 @@ function logIn(event) {
   $.post(url + '/auth/login', data)
     .then(res => {
       if (res.error) {
-        console.log(res.error);
+        console.log(res.error)
         $('#login-error').show()
       } else {
+        localStorage.setItem('token', response.token)
         location.href = '/dreams'
-        // console.log(res);
       }
     })
 };
 
 function signUp(event) {
   event.preventDefault()
-  const username = $('#username-new').val()
   const email = $('#email').val()
+  const username = $('#username-new').val()
   const password = $('#password-new').val()
-  const data = {username, email, password}
+  const data = {email, username, password}
   $.post(url + '/auth/signup', data)
     .then(res => {
       if (res.error) {
-        console.log(res.error);
+        console.log(res.error)
         $('#signup-error').show()
       } else {
+        localStorage.setItem('token', response.token)
         location.href = '/dreams'
       }
     })

@@ -10,25 +10,26 @@ require('dotenv').config()
 // Existing user login
 router.post('/login', (req, res) => {
   knex('user').where('user.username', req.body.username)
-    .then(user => {
+  .then(user => {
+    if (user.length === 0) {
+      res.json({error: 'Failed login attempt.'})
+    } else {
       let match = bcrypt.compareSync(req.body.password, user[0].password)
-      if (user.length === 0 || !match) {
-        res.json({error: 'Login failed.'})
-      } else if (match) {
-        router.get('/', (req, res) => {
-          queries.getDreamsByUserId(user[0].id)
-          .then(dreams => {
-            res.render('dreams', {dreams})
-          })
-        })
-        res.json({msg: 'Logged in'})
+      if (match) {
+        let payload = user[0]
+        delete payload.password
+        let token = jwt.sign(payload, process.env.TOKEN_SECRET)
+        res.json({token});
+      } else {
+        res.json({error: 'Failed login attempt.'})
       }
-    })
+    }
+  })
 });
 
 // New user signup
 router.post('/signup', (req, res) => {
-  knex('user').where('user.email', req.body.email)
+  knex('user').where('user.email', req.body.email).orWhere('user.username', req.body.username)
     .then(user => {
       if (user.length === 0) {
         let saltRounds = 10
@@ -42,7 +43,7 @@ router.post('/signup', (req, res) => {
             res.json({token});
           })
       } else {
-        res.json({error: 'Signup failed.'})
+        res.json({error: 'Failed signup attempt.'})
       }
     })
 });
