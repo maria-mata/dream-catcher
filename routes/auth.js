@@ -11,17 +11,17 @@ require('dotenv').config()
 router.post('/login', (req, res) => {
   knex('user').where('user.username', req.body.username)
     .then(user => {
-      if (user.length === 0) {
+      let match = bcrypt.compareSync(req.body.password, user[0].password)
+      if (user.length === 0 || !match) {
         res.json({error: 'Login failed.'})
-      } else {
-        let match = bcrypt.compareSync(req.body.password, user[0].password)
-        if (match) {
+      } else if (match) {
+        router.get('/', (req, res) => {
           queries.getDreamsByUserId(user[0].id)
           .then(dreams => {
             res.render('dreams', {dreams})
-            console.log('is this working?');
           })
-        }
+        })
+        res.json({msg: 'Logged in'})
       }
     })
 });

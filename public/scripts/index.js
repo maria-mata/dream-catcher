@@ -1,7 +1,7 @@
 const url = 'http://localhost:3000'
 
 $(() => {
-  localStorage.removeItem('token');
+  // localStorage.removeItem('token');
   $('#login-error').hide()
   $('#signup-error').hide()
   $('#login-form').submit(logIn)
@@ -20,6 +20,7 @@ function logIn(event) {
         $('#login-error').show()
       } else {
         location.href = '/dreams'
+        // console.log(res);
       }
     })
 };
