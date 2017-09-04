@@ -1,4 +1,5 @@
-const url = 'http://localhost:3000/auth'
+// const url = 'http://localhost:3000/auth'
+const url = 'https://desolate-coast-86563.herokuapp.com/auth'
 
 $(() => {
   $('#login-form').submit(logIn)
