@@ -11,10 +11,6 @@ a.navbar-brand.logo {
   font-weight: bold;
 }
 
-main.container {
-  margin: 2vh 0;
-}
-
 #login-error, #signup-error {
   display: none;
 }
