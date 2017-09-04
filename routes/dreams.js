@@ -20,10 +20,17 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   let dream = req.body
   dream.date = knex.raw('now()')
-  queries.addDream(dream)
-    .then(() => {
-      res.json({message: 'Success!'})
-    })
+  queries.addDream(dream).then(() => res.json({message: 'Success!'}))
+});
+
+// DELETE dream
+router.delete('/', (req, res) => {
+  queries.deleteDream(req.body.id).then(() => res.json({message: 'Success!'}))
+});
+
+// EDIT dream
+router.put('/', (req, res) => {
+  queries.deleteDream(req.body.id, req.body).then(() => res.json({message: 'Success!'}))
 });
 
 module.exports = router;

@@ -14,5 +14,16 @@ module.exports = {
 
   addDream: dream => {
     return knex('dream').insert(dream).returning('*')
+  },
+
+  editDream: (id, dream) => {
+    return knex('dream').where('dream.id', id)
+      .update(body)
+      .returning('*')
+  },
+
+  deleteDream: id => {
+    return knex('dream').where('dream.id', id)
+      .del().returning('*')
   }
 };
