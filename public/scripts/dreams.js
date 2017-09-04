@@ -1,10 +1,18 @@
-// const url2 = 'http://localhost:3000/dreams'
-const url2 = 'https://desolate-coast-86563.herokuapp.com/dreams'
+const url2 = 'http://localhost:3000/dreams'
+// const url2 = 'https://desolate-coast-86563.herokuapp.com/dreams'
 
 $(() => {
-  $('#new-dream').submit(addNewDream)
   $('#logout').click(logOut)
+  $('#new-dream').submit(addNewDream)
+  $('.edit').click(editDream)
+  $('.delete').click(deleteDream)
 });
+
+function logOut(event) {
+  event.preventDefault()
+  localStorage.removeItem('user')
+  location.href = '/'
+};
 
 function addNewDream(event) {
   event.preventDefault()
@@ -18,8 +26,12 @@ function addNewDream(event) {
   })
 };
 
-function logOut(event) {
-	event.preventDefault()
-  localStorage.removeItem('user')
-	location.href = '/'
+function editDream(event) {
+  let id = $(this).attr('id').charAt(0)
+  console.log('edit dream id:', id);
+};
+
+function deleteDream(event) {
+  let id = $(this).attr('id').charAt(0)
+  console.log('delete dream id:', id);
 };

@@ -29,7 +29,7 @@
               <dl id="dreams">
               {{#each dreams}}
                 <dt>{{date}} <span class="badge">{{category_name}}</span></dt>
-                <dd>{{description}}</dd>
+                <dd>{{description}}<a href="#" id="{{id}}-edit" class="btn-sm edit">Edit</a><a id="{{id}}-del" href="#" class="btn-sm delete">Delete</a></dd>
               {{/each}}
               </dl>
             </div>
@@ -83,7 +83,7 @@
                 </textarea>
               </div>
             </div>
-            <button id="user" type="submit" class="btn btn-primary">Submit</button>
+            <button href="#" id="user" type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>
       </div>
