@@ -16,6 +16,10 @@ module.exports = {
     return knex('dream').insert(dream).returning('*')
   },
 
+  getDreamById: id => {
+    return knex('dream').where('dream.id', id)
+  },
+
   editDream: (id, dream) => {
     return knex('dream').where('dream.id', id)
       .update(body)

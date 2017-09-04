@@ -3,7 +3,7 @@ const router = express.Router()
 const knex = require('../db/knex')
 const queries = require('../db/queries')
 
-// GET dreams by ID
+// GET dreams by user ID
 router.get('/', (req, res) => {
   queries.getDreamsByUserId(req.query.id)
     .then(data => {
@@ -21,6 +21,11 @@ router.post('/', (req, res) => {
   let dream = req.body
   dream.date = knex.raw('now()')
   queries.addDream(dream).then(() => res.json({message: 'Success!'}))
+});
+
+// GET dream by ID
+router.get('/:id', (req, res) => {
+  queries.getDreamById(req.params.id).then(dream => res.render('edit', {dream}))
 });
 
 // DELETE dream
