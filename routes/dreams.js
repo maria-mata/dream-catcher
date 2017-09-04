@@ -3,11 +3,16 @@ const router = express.Router()
 const knex = require('../db/knex')
 const queries = require('../db/queries')
 
-// GET dream types
+// GET dreams by ID
 router.get('/', (req, res) => {
-  queries.getCategories()
-    .then(dreamTypes => {
-      res.render('dreams', {dreamTypes})
+  queries.getDreamsByUserId(req.query.id)
+    .then(data => {
+      let dreams = []
+      for (var i = 0; i < data.length; i++) {
+        dreams.push(data[i])
+        dreams[i].date = data[i].date.toString().substring(0, 16)
+      }
+      res.render('dreams', {dreams})
     })
 });
 
@@ -17,6 +22,6 @@ router.post('/', (req, res) => {
     .then(() => {
       res.render('dreams', {message: 'Success!'})
     })
-})
+});
 
 module.exports = router;

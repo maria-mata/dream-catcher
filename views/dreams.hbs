@@ -28,17 +28,25 @@
             <div class="tab-pane active" id="my-dreams" role="tabpanel">
               <dl id="dreams">
               {{#each dreams}}
-                <dt>{{date}} / {{category_name}}</dt>
+                <dt>{{date}} <span class="badge">{{category_name}}</span></dt>
                 <dd>{{description}}</dd>
               {{/each}}
               </dl>
             </div>
             <div class="tab-pane" id="dream-types" role="tabpanel">
               <dl>
-              {{#each dreamTypes}}
-                <dt>{{name}}</dt>
-                <dd>{{description}}</dd>
-              {{/each}}
+                <dt>Normal</dt>
+                <dd>These are your bog standard dreams where you have no idea you're dreaming until you wake up. In a typical dream, you could be doing a rap duet with the Pope and think nothing of it. You accept your dream reality as it is.</dd>
+                <dt>Daydream</dt>
+                <dd>You spend an average of 70-120 minutes a day daydreaming or fantasizing from a perspective that transcends normal perception. Between consciousness and the sleep state is an area that allows the imagination to wander. As your level of awareness decreases, you lose your sense of self. You may revisit the past, or explore the future, and in doing so, approach the border of the dreamscape. All the while, consciousness keeps pulling you back into the present."</dd>
+                <dt>Lucid</dt>
+                <dd>Lucid dreams occur when you ‘wake up’ while dreaming. Sometimes this sudden sense of knowing you are dreaming allows you to do fantastic things like fly over the houses you see. Many people actually wake themselves up within the dream to remain in this lucid state to explore how they can influence dreams.</dd>
+                <dt>Vivid</dt>
+                <dd>One characteristic of vivid dreams is they seem very real. More complex emotions and thoughts on a person's mind are what cause vivid dreams. Because of the realness of the vivid dream experience, often when waking from a vivid dream, it takes a person a few moments to realize they were dreaming.</dd>
+                <dt>Nightmare</dt>
+                <dd>The nightmare often causes you to wake up in a state of panic with your heart racing. In nightmares, you don't know you're dreaming. So the unconscious mind processes everything as if it were really happening. Some nightmares can be so vivid that the sensory system is triggered and you can feel certain types of pain. It can be very unnerving."</dd>
+                <dt>Prophetic</dt>
+                <dd>Also referred to as precognitive dreams, prophetic dreams are believed to be a form of extra-sensory perception (ESP) in which a person is said to perceive information about places or events through paranormal means before they actually happen.</dd>
               </dl>
               <dl>
               </dl>
@@ -58,9 +66,12 @@
               <div class="form-group col">
                 <select class="custom-select" name="">
                   <option selected>Choose Category</option>
-                  {{#each dreamTypes}}
-                  <option value="{{id}}">{{name}}</option>
-                  {{/each}}
+                  <option value="1">Normal</option>
+                  <option value="2">Daydream</option>
+                  <option value="3">Lucid</option>
+                  <option value="4">Vivid</option>
+                  <option value="5">Nightmare</option>
+                  <option value="6">Prophetic</option>
                 </select>
               </div>
             </div>

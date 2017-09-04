@@ -1,4 +1,4 @@
-const url = 'http://localhost:3000'
+const url = 'http://localhost:3000/auth'
 
 $(() => {
   $('#login-form').submit(logIn)
@@ -10,14 +10,13 @@ function logIn(event) {
   const username = $('#username').val()
   const password = $('#password').val()
   const data = {username, password}
-  $.post(url + '/auth/login', data)
+  $.post(url + '/login', data)
     .then(res => {
       if (res.error) {
         console.log(res.error)
         $('#login-error').show()
       } else {
-        localStorage.setItem('token', res.token)
-        location.href = '/dreams'
+        location.href = '/dreams?id=' + res.id
       }
     })
 };
@@ -28,14 +27,13 @@ function signUp(event) {
   const username = $('#username-new').val()
   const password = $('#password-new').val()
   const data = {email, username, password}
-  $.post(url + '/auth/signup', data)
+  $.post(url + '/signup', data)
     .then(res => {
       if (res.error) {
         console.log(res.error)
         $('#signup-error').show()
       } else {
-        localStorage.setItem('token', res.token)
-        location.href = '/dreams'
+        location.href = '/dreams?id=' + res.id
       }
     })
 };

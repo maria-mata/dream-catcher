@@ -1,3 +1,5 @@
+const url2 = 'http://localhost:3000/dreams'
+
 $(() => {
   $('#new-dream').submit(addNewDream)
   $('#logout').click(logOut)

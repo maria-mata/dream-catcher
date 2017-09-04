@@ -42,7 +42,7 @@ a.nav-link.active {
   background: none;
 }
 
-.btn.btn-primary {
+.btn.btn-primary, .badge {
   background-color: #8000FF;
   border: none;
 }
