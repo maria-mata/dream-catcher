@@ -7,10 +7,18 @@ $(() => {
 
 function addNewDream(event) {
   event.preventDefault()
-  console.log('new dream clicking');
+  const description = $('#description').val()
+  const user_id = localStorage.getItem('user')
+  const category_id = $('#select').val()
+  const data = {description, user_id, category_id}
+  $.post(url2, data).then(res => {
+    console.log(res)
+    location.reload()
+  })
 };
 
 function logOut(event) {
 	event.preventDefault()
+  localStorage.removeItem('user')
 	location.href = '/'
 };

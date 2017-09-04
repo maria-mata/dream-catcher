@@ -16,6 +16,7 @@ function logIn(event) {
         console.log(res.error)
         $('#login-error').show()
       } else {
+        localStorage.setItem('user', res.id)
         location.href = '/dreams?id=' + res.id
       }
     })
@@ -33,6 +34,7 @@ function signUp(event) {
         console.log(res.error)
         $('#signup-error').show()
       } else {
+        $('#user').val() = res.id
         location.href = '/dreams?id=' + res.id
       }
     })

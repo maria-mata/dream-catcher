@@ -18,9 +18,11 @@ router.get('/', (req, res) => {
 
 // POST a new dream
 router.post('/', (req, res) => {
-  queries.addDream(req.body)
+  let dream = req.body
+  dream.date = knex.raw('now()')
+  queries.addDream(dream)
     .then(() => {
-      res.render('dreams', {message: 'Success!'})
+      res.json({message: 'Success!'})
     })
 });
 
