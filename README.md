@@ -1,4 +1,6 @@
-# Dream Catcher
-Keep track of your awesome, scary, and weird dreams!
+# About
+[Dream Catcher](https://desolate-coast-86563.herokuapp.com/) is a journal where you can log your peaceful, scary, or otherwise interesting dreams.
 
-This project is currently under construction. More to come soon!
+##### Tech Notes
+* Created with Node, Express, Knex, JavaScript, jQuery, Handlebars, Bootstrap, HTML, CSS, and Heroku.
+* Follows CRUD standards and renders HTML from the server using Handlebars.
