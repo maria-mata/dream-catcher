@@ -8,10 +8,6 @@ module.exports = {
       .select('dream.*', 'category.name AS category_name')
   },
 
-  getCategories: () => {
-    return knex('category')
-  },
-
   addDream: dream => {
     return knex('dream').insert(dream).returning('*')
   },
