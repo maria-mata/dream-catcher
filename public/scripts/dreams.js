@@ -1,5 +1,5 @@
-const url2 = 'http://localhost:3000/dreams'
-// const url2 = 'https://desolate-coast-86563.herokuapp.com/dreams'
+// const url2 = 'http://localhost:3000/dreams'
+const url2 = 'https://desolate-coast-86563.herokuapp.com/dreams'
 
 $(() => {
   $('#logout').click(logOut)
