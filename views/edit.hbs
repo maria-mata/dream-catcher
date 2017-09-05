@@ -17,7 +17,9 @@
           <h5>Edit Dream</h5>
         </div>
         <div class="card-body">
-          <form id="edit-dream">
+          <form id="edit">
+          {{#each dream}}
+            <h5 class="edit" id="{{category_id}}"><span class="badge">{{category_name}}</span></h5>
             <div class="row">
               <div class="form-group col">
                 <select class="custom-select" id="type">
@@ -34,10 +36,11 @@
             <div class="row">
               <div class="form-group col">
                 <label for="description">Description</label>
-                <textarea class="form-control" id="text" rows="5"></textarea>
+                <textarea class="form-control" id="text" rows="5">{{description}}</textarea>
               </div>
             </div>
-            <button href="#" type="submit" class="btn btn-primary">Submit</button>
+            <button value="{{id}}" href="#" type="submit" class="btn btn-primary">Submit</button>
+            {{/each}}
           </form>
         </div>
       </div>

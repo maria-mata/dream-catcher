@@ -28,14 +28,14 @@ router.get('/:id', (req, res) => {
   queries.getDreamById(req.params.id).then(dream => res.render('edit', {dream}))
 });
 
+// EDIT dream
+router.put('/', (req, res) => {
+  queries.editDream(req.body.id, req.body).then(() => res.json({message: 'Success!'}))
+});
+
 // DELETE dream
 router.delete('/', (req, res) => {
   queries.deleteDream(req.body.id).then(() => res.json({message: 'Success!'}))
-});
-
-// EDIT dream
-router.put('/', (req, res) => {
-  queries.deleteDream(req.body.id, req.body).then(() => res.json({message: 'Success!'}))
 });
 
 module.exports = router;

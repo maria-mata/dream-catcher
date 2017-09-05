@@ -18,11 +18,13 @@ module.exports = {
 
   getDreamById: id => {
     return knex('dream').where('dream.id', id)
+      .join('category', 'dream.category_id', 'category.id')
+      .select('dream.*', 'category.name AS category_name')
   },
 
   editDream: (id, dream) => {
     return knex('dream').where('dream.id', id)
-      .update(body)
+      .update(dream)
       .returning('*')
   },
 
