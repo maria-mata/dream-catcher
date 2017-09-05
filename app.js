@@ -10,7 +10,6 @@ const cors = require('cors');
 const index = require('./routes/index');
 const auth = require('./routes/auth')
 const dreams = require('./routes/dreams');
-const categories = require('./routes/categories');
 
 const app = express();
 
