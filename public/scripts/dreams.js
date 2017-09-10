@@ -1,5 +1,5 @@
-// const url2 = 'https://desolate-coast-86563.herokuapp.com/dreams'
-const url2 = 'http://localhost:3000/dreams'
+const url2 = 'https://desolate-coast-86563.herokuapp.com/dreams'
+// const url2 = 'http://localhost:3000/dreams'
 let token = localStorage.getItem('token')
 let decoded, userId
 
@@ -24,6 +24,7 @@ function logOut(event) {
   event.preventDefault()
   localStorage.removeItem('token')
   location.href = '/'
+  $('#logout').hide()
 };
 
 function parseJWT(token) {
@@ -48,8 +49,7 @@ function goToEdit(event) {
     let id = $(this).attr('id').charAt(0)
     localStorage.setItem('dream', id)
     location.href = '/dreams/edit?token=' + token + '&dream=' + id
-  } else {
-    location.href = '/'
+    $('#back').show()
   }
 };
 
@@ -79,6 +79,7 @@ function goBack(event) {
   event.preventDefault()
   localStorage.removeItem('dream')
   location.href = '/dreams?token=' + token
+  $('#back').hide()
 };
 
 function deleteDream(event) {

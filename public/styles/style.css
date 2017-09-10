@@ -4,6 +4,10 @@ body {
   background-repeat: repeat;
 }
 
+.fixed-bottom {
+  position: absolute;
+}
+
 a.navbar-brand.logo {
   padding: 0.5em 0;
   font-family: 'Amatic SC', cursive;
@@ -31,11 +35,6 @@ a.nav-link.active {
 .card a {
   color: #8000FF;
   font-weight: bold !important;
-}
-
-.card-body.index {
-  max-height: 41vh;
-  overflow: scroll;
 }
 
 .card-body.main {

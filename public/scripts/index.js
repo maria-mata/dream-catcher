@@ -1,5 +1,5 @@
-// const url = 'https://desolate-coast-86563.herokuapp.com/auth'
-const url = 'http://localhost:3000/auth'
+const url = 'https://desolate-coast-86563.herokuapp.com/auth'
+// const url = 'http://localhost:3000/auth'
 
 $(() => {
   $('#login-form').submit(logIn)
@@ -37,6 +37,7 @@ function signUp(event) {
       } else {
         localStorage.setItem('token', res.token)
         location.href = '/dreams?token=' + res.token
+        $('#logout').show()
       }
     })
 };
