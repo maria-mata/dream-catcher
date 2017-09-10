@@ -37,6 +37,11 @@ a.nav-link.active {
   font-weight: bold !important;
 }
 
+.card-body.index {
+  height: 40vh;
+  overflow: scroll;
+}
+
 .card-body.main {
   height: 65vh;
   overflow: scroll;
