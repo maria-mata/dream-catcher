@@ -6,7 +6,6 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
-
 // Existing user login
 router.post('/login', (req, res) => {
   knex('user').where('user.username', req.body.username)
@@ -29,23 +28,35 @@ router.post('/login', (req, res) => {
 
 // New user signup
 router.post('/signup', (req, res) => {
-  knex('user').where('user.email', req.body.email).orWhere('user.username', req.body.username)
+  if (validUser(req.body)) {
+    knex('user').where('user.email', req.body.email).orWhere('user.username', req.body.username)
     .then(user => {
       if (user.length === 0) {
         let saltRounds = 10
         let hash = bcrypt.hashSync(req.body.password, saltRounds)
         req.body.password = hash
         knex('user').insert(req.body).returning('*')
-          .then(newUser => {
-            let payload = newUser[0]
-            delete payload.password
-            let token = jwt.sign(payload, process.env.TOKEN_SECRET)
-            res.json({token});
-          })
+        .then(newUser => {
+          let payload = newUser[0]
+          delete payload.password
+          let token = jwt.sign(payload, process.env.TOKEN_SECRET)
+          res.json({token});
+        })
       } else {
         res.json({error: 'Failed signup attempt.'})
       }
     })
+  } else {
+    res.json({error: 'Failed signup attempt.'})
+  }
 });
+
+// Validation
+function validUser(user) {
+  let email = typeof user.email == 'string' && user.email.match(/([@])/g) != null
+  let name = typeof user.name == 'string' && user.name.trim() != ''
+  let password = typeof user.password == 'string' && user.password.trim() != ''
+  return name && email && password
+}
 
 module.exports = router

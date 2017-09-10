@@ -37,7 +37,6 @@ function signUp(event) {
       } else {
         localStorage.setItem('token', res.token)
         location.href = '/dreams?token=' + res.token
-        $('#logout').show()
       }
     })
 };

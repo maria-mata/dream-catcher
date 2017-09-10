@@ -24,7 +24,6 @@ function logOut(event) {
   event.preventDefault()
   localStorage.removeItem('token')
   location.href = '/'
-  $('#logout').hide()
 };
 
 function parseJWT(token) {
@@ -49,7 +48,6 @@ function goToEdit(event) {
     let id = $(this).attr('id').charAt(0)
     localStorage.setItem('dream', id)
     location.href = '/dreams/edit?token=' + token + '&dream=' + id
-    $('#back').show()
   }
 };
 
@@ -79,7 +77,6 @@ function goBack(event) {
   event.preventDefault()
   localStorage.removeItem('dream')
   location.href = '/dreams?token=' + token
-  $('#back').hide()
 };
 
 function deleteDream(event) {
