@@ -37,6 +37,15 @@ a.nav-link.active {
   font-weight: bold !important;
 }
 
+small a {
+  color: inherit;
+  font-weight: bold;
+}
+
+small a:hover {
+  color: inherit;
+}
+
 .card-body.index {
   height: 40vh;
   overflow: scroll;
