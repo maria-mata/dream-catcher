@@ -1,7 +1,10 @@
-// const url2 = 'http://localhost:3000/dreams'
-const url2 = 'https://desolate-coast-86563.herokuapp.com/dreams'
+// const url2 = 'https://desolate-coast-86563.herokuapp.com/dreams'
+const url2 = 'http://localhost:3000/dreams'
+let token = localStorage.getItem('token')
+let decoded, userId
 
 $(() => {
+  authorize()
   $('#logout').click(logOut)
   $('#new-dream').submit(addNewDream)
   $('.edit').click(goToEdit)
@@ -10,16 +13,29 @@ $(() => {
   $('#edit').submit(editDream)
 });
 
+function authorize() {
+  if (token) {
+    decoded = parseJWT(token)
+    userId = decoded.id
+  }
+};
+
 function logOut(event) {
   event.preventDefault()
-  localStorage.removeItem('user')
+  localStorage.removeItem('token')
   location.href = '/'
+};
+
+function parseJWT(token) {
+	let base64Url = token.split('.')[1];
+	let base64 = base64Url.replace('-', '+').replace('_', '/');
+	return JSON.parse(window.atob(base64));
 };
 
 function addNewDream(event) {
   event.preventDefault()
   const description = $('#description').val()
-  const user_id = localStorage.getItem('user')
+  const user_id = userId
   const category_id = $('#select').val()
   const data = {description, user_id, category_id}
   $.post(url2, data).then(res => {
@@ -28,22 +44,27 @@ function addNewDream(event) {
 };
 
 function goToEdit(event) {
-  let id = $(this).attr('id').charAt(0)
-  localStorage.setItem('dream', id)
-  location.href = '/dreams/' + id
+  if (token) {
+    let id = $(this).attr('id').charAt(0)
+    localStorage.setItem('dream', id)
+    location.href = '/dreams/edit?token=' + token + '&dream=' + id
+  } else {
+    location.href = '/'
+  }
 };
 
 function editDream(event) {
   event.preventDefault()
+  let category
   if ($('#type').val() === 'Change Category') {
-    let category = $('h5.edit').attr('id')
+    category = $('h5.edit').attr('id')
   } else {
     category = $('#type').val()
   }
   const data = {
     id: localStorage.getItem('dream'),
     description: $('#text').val(),
-    user_id: localStorage.getItem('user'),
+    user_id: userId,
     category_id: category
   }
   $.ajax({
@@ -57,8 +78,7 @@ function editDream(event) {
 function goBack(event) {
   event.preventDefault()
   localStorage.removeItem('dream')
-  const user_id = localStorage.getItem('user')
-  location.href = '/dreams?id=' + user_id
+  location.href = '/dreams?token=' + token
 };
 
 function deleteDream(event) {

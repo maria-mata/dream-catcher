@@ -1,8 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const knex = require('../db/knex')
-const bcrypt = require('bcrypt')
 const queries = require('../db/queries')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 
 // Existing user login
@@ -14,8 +16,10 @@ router.post('/login', (req, res) => {
     } else {
       let match = bcrypt.compareSync(req.body.password, user[0].password)
       if (match) {
-        let id = user[0].id
-        res.json({id});
+        let payload = user[0]
+        delete payload.password
+        let token = jwt.sign(payload, process.env.TOKEN_SECRET)
+        res.json({token});
       } else {
         res.json({error: 'Failed login attempt.'})
       }
@@ -33,8 +37,10 @@ router.post('/signup', (req, res) => {
         req.body.password = hash
         knex('user').insert(req.body).returning('*')
           .then(newUser => {
-            let id = newUser[0].id
-            res.json({id});
+            let payload = newUser[0]
+            delete payload.password
+            let token = jwt.sign(payload, process.env.TOKEN_SECRET)
+            res.json({token});
           })
       } else {
         res.json({error: 'Failed signup attempt.'})
