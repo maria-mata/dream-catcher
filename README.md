@@ -7,7 +7,7 @@
 
 ### How To Use
 Login or sign up
-![login-or-signup](/demo/login.ig)
+![login-or-signup](/demo/login.gif)
 
 View your dream logs & categories
 ![view-dreams-and-categories](/demo/categories.gif)
