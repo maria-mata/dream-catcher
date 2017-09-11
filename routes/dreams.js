@@ -9,7 +9,10 @@ router.get('/', (req, res) => {
   let token = req.query.token
   let decoded = jwt.verify(token, process.env.TOKEN_SECRET);
   let id = decoded.id
-  queries.getDreamsByUserId(id)
+  if (isNaN(id)) { 
+    res.json({error: 'Invalid token.'})
+  } else {
+    queries.getDreamsByUserId(id)
     .then(data => {
       let dreams = []
       for (var i = 0; i < data.length; i++) {
@@ -18,6 +21,7 @@ router.get('/', (req, res) => {
       }
       res.render('dreams', {dreams})
     })
+  }
 });
 
 // POST a new dream
@@ -33,7 +37,14 @@ router.post('/', (req, res) => {
 
 // GET dream by ID
 router.get('/edit', (req, res) => {
-  queries.getDreamById(req.query.dream).then(dream => res.render('edit', {dream}))
+  let token = req.query.token
+  let decoded = jwt.verify(token, process.env.TOKEN_SECRET);
+  let id = decoded.id
+  if (isNaN(id)) {
+    res.json({error: 'Invalid token.'})
+  } else {
+    queries.getDreamById(req.query.dream).then(dream => res.render('edit', {dream}))
+  }
 });
 
 // EDIT dream
@@ -51,7 +62,7 @@ router.delete('/', (req, res) => {
   queries.deleteDream(req.body.id).then(() => res.json({message: 'Success!'}))
 });
 
-// Validation
+// validation
 function validDream(dream) {
   let description = dream.description.trim() != ''
   let user = dream.user_id.trim() != '' && !isNaN(dream.user_id)
