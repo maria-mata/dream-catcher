@@ -24,6 +24,7 @@ router.post('/login', (req, res) => {
       }
     }
   })
+  .catch(error => res.json({error: 'Server error'}))
 });
 
 // New user signup
@@ -46,6 +47,7 @@ router.post('/signup', (req, res) => {
         res.json({error: 'Failed signup attempt.'})
       }
     })
+    .catch(error => res.json({error: 'Server error'}))
   } else {
     res.json({error: 'Failed signup attempt.'})
   }

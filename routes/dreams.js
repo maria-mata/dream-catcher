@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
   let token = req.query.token
   let decoded = jwt.verify(token, process.env.TOKEN_SECRET);
   let id = decoded.id
-  if (isNaN(id)) { 
+  if (isNaN(id)) {
     res.json({error: 'Invalid token.'})
   } else {
     queries.getDreamsByUserId(id)
@@ -21,6 +21,7 @@ router.get('/', (req, res) => {
       }
       res.render('dreams', {dreams})
     })
+    .catch(error => res.json({error: 'Server error'}))
   }
 });
 
@@ -29,7 +30,9 @@ router.post('/', (req, res) => {
   let dream = req.body
   if (validDream(dream)) {
     dream.date = knex.raw('now()')
-    queries.addDream(dream).then(() => res.json({message: 'Success!'}))
+    queries.addDream(dream)
+    .then(() => res.json({message: 'Success!'}))
+    .catch(error => res.json({error: 'Server error'}))
   } else {
     res.json({error: 'Invalid user input.'})
   }
@@ -43,7 +46,9 @@ router.get('/edit', (req, res) => {
   if (isNaN(id)) {
     res.json({error: 'Invalid token.'})
   } else {
-    queries.getDreamById(req.query.dream).then(dream => res.render('edit', {dream}))
+    queries.getDreamById(req.query.dream)
+    .then(dream => res.render('edit', {dream}))
+    .catch(error => res.json({error: 'Server error'}))
   }
 });
 
@@ -51,7 +56,9 @@ router.get('/edit', (req, res) => {
 router.put('/', (req, res) => {
   let dream = req.body
   if (validDream(dream)) {
-    queries.editDream(req.body.id, dream).then(() => res.json({message: 'Success!'}))
+    queries.editDream(req.body.id, dream)
+    .then(() => res.json({message: 'Success!'}))
+    .catch(error => res.json({error: 'Server error'}))
   } else {
     res.json({error: 'Invalid user input.'})
   }
@@ -59,7 +66,9 @@ router.put('/', (req, res) => {
 
 // DELETE dream
 router.delete('/', (req, res) => {
-  queries.deleteDream(req.body.id).then(() => res.json({message: 'Success!'}))
+  queries.deleteDream(req.body.id)
+  .then(() => res.json({message: 'Success!'}))
+  .catch(error => res.json({error: 'Server error'}))
 });
 
 // validation
