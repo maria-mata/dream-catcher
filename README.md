@@ -6,7 +6,7 @@
 * Follows CRUD standards and renders HTML from the server using Handlebars templating.
 
 ### How To Use
-* Login (or sign up) to see your dream logs or read about dream categories
+* Log in or sign up to see your dream logs and read about dream categories
 ![login-or-signup](/demo/login.gif)
 
 * Add a new dream
