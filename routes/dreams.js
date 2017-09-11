@@ -3,6 +3,7 @@ const router = express.Router()
 const knex = require('../db/knex')
 const queries = require('../db/queries')
 const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 // GET dreams by user ID
 router.get('/', (req, res) => {
@@ -71,7 +72,7 @@ router.delete('/', (req, res) => {
   .catch(error => res.json({error: 'Server error'}))
 });
 
-// validation
+// Validation
 function validDream(dream) {
   let description = dream.description.trim() != ''
   let user = dream.user_id.trim() != '' && !isNaN(dream.user_id)
