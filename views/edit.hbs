@@ -20,6 +20,9 @@
           <form id="edit">
           {{#each dream}}
             <h5 class="edit" id="{{category_id}}"><span class="badge">{{category_name}}</span></h5>
+            <div class="row container">
+              <p class="text-danger"><span id="edit-error">Description cannot be blank.</span></p>
+            </div>
             <div class="row">
               <div class="form-group col">
                 <select class="custom-select" id="type">

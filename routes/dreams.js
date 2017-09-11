@@ -22,9 +22,13 @@ router.get('/', (req, res) => {
 
 // POST a new dream
 router.post('/', (req, res) => {
-  let dream = req.body // make sure it's not empty (validate)
-  dream.date = knex.raw('now()')
-  queries.addDream(dream).then(() => res.json({message: 'Success!'}))
+  let dream = req.body
+  if (validDream(dream)) {
+    dream.date = knex.raw('now()')
+    queries.addDream(dream).then(() => res.json({message: 'Success!'}))
+  } else {
+    res.json({error: 'Invalid user input.'})
+  }
 });
 
 // GET dream by ID
@@ -34,12 +38,25 @@ router.get('/edit', (req, res) => {
 
 // EDIT dream
 router.put('/', (req, res) => {
-  queries.editDream(req.body.id, req.body).then(() => res.json({message: 'Success!'}))
+  let dream = req.body
+  if (validDream(dream)) {
+    queries.editDream(req.body.id, dream).then(() => res.json({message: 'Success!'}))
+  } else {
+    res.json({error: 'Invalid user input.'})
+  }
 });
 
 // DELETE dream
 router.delete('/', (req, res) => {
   queries.deleteDream(req.body.id).then(() => res.json({message: 'Success!'}))
 });
+
+// Validation
+function validDream(dream) {
+  let description = dream.description.trim() != ''
+  let user = dream.user_id.trim() != '' && !isNaN(dream.user_id)
+  let category = dream.category_id.trim() != '' && !isNaN(dream.category_id)
+  return description && user && category
+};
 
 module.exports = router;

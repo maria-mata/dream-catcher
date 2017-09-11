@@ -29,7 +29,7 @@
               <dl id="dreams">
               {{#each dreams}}
                 <dt>{{date}} <span class="badge">{{category_name}}</span></dt>
-                <dd>{{description}}<a href="#" id="{{id}}-edit" class="btn-sm edit">Edit</a><a id="{{id}}-del" href="#" class="btn-sm delete">Delete</a></dd>
+                <dd>{{description}}<a href="#" value="{{id}}" class="btn-sm edit">Edit</a><a id="{{id}}-del" href="#" class="btn-sm delete">Delete</a></dd>
               {{/each}}
               </dl>
             </div>
@@ -62,6 +62,9 @@
         </div>
         <div class="card-body main">
           <form id="new-dream">
+            <div class="row container">
+              <p class="text-danger"><span id="new-error">Invalid input.</span></p>
+            </div>
             <div class="row">
               <div class="form-group col">
                 <select class="custom-select" id="select">

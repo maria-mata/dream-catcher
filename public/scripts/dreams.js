@@ -20,16 +20,16 @@ function authorize() {
   }
 };
 
+function parseJWT(token) {
+  let base64Url = token.split('.')[1];
+  let base64 = base64Url.replace('-', '+').replace('_', '/');
+  return JSON.parse(window.atob(base64));
+};
+
 function logOut(event) {
   event.preventDefault()
   localStorage.removeItem('token')
   location.href = '/'
-};
-
-function parseJWT(token) {
-	let base64Url = token.split('.')[1];
-	let base64 = base64Url.replace('-', '+').replace('_', '/');
-	return JSON.parse(window.atob(base64));
 };
 
 function addNewDream(event) {
@@ -39,13 +39,18 @@ function addNewDream(event) {
   const category_id = $('#select').val()
   const data = {description, user_id, category_id}
   $.post(url2, data).then(res => {
-    location.reload()
+    if (res.error) {
+      console.log(res.error)
+      $('#new-error').show()
+    } else {
+      location.reload()
+    }
   })
 };
 
 function goToEdit(event) {
   if (token) {
-    let id = $(this).attr('id').charAt(0)
+    let id = $(this).attr('value')
     localStorage.setItem('dream', id)
     location.href = '/dreams/edit?token=' + token + '&dream=' + id
   }
@@ -65,12 +70,16 @@ function editDream(event) {
     user_id: userId,
     category_id: category
   }
-  $.ajax({
-    url: url2,
-    type: 'PUT',
-    data: data,
-    success: goBack(event)
-  })
+  if (data.description.trim() != '') {
+    $.ajax({
+      url: url2,
+      type: 'PUT',
+      data: data,
+      success: goBack(event)
+    })
+  } else {
+    $('#edit-error').show()
+  }
 };
 
 function goBack(event) {

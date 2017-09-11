@@ -53,10 +53,10 @@ router.post('/signup', (req, res) => {
 
 // Validation
 function validUser(user) {
-  let email = typeof user.email == 'string' && user.email.match(/([@])/g) != null
-  let name = typeof user.name == 'string' && user.name.trim() != ''
-  let password = typeof user.password == 'string' && user.password.trim() != ''
-  return name && email && password
-}
+  let email = user.email.match(/([@])/g) != null
+  let username = user.username.trim() != ''
+  let password = user.password.trim() != ''
+  return email && username && password
+};
 
 module.exports = router

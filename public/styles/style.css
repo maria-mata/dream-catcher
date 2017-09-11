@@ -15,7 +15,7 @@ a.navbar-brand.logo {
   font-weight: bold;
 }
 
-#login-error, #signup-error {
+#login-error, #signup-error, #new-error, #edit-error {
   display: none;
 }
 
