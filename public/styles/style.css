@@ -47,12 +47,12 @@ small a:hover {
 }
 
 .card-body.index {
-  height: 40vh;
+  max-height: 40vh;
   overflow: scroll;
 }
 
 .card-body.main {
-  height: 65vh;
+  height: 60vh;
   overflow: scroll;
 }
 
