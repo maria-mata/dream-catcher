@@ -1,5 +1,5 @@
 ## About
-[Dream Catcher](https://desolate-coast-86563.herokuapp.com/) is a journal where you can log your peaceful, scary, and interesting dreams.
+[Dream Catcher](http://dream-catcher.mjmata.com/) is a journal where you can log your peaceful, scary, and interesting dreams.
 
 ### Tech Notes
 * Created with Node, Express, Knex, JavaScript, jQuery, Handlebars, Bootstrap, HTML, CSS, and Heroku.
